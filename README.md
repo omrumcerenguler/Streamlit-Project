@@ -1,239 +1,95 @@
-# Akademik Yayın Tahmin ve Analiz Sistemi
+# 📊 Çukurova Üniversitesi Yayın Analizi — Streamlit
 
-Bu proje, belirli akademik alanlar için geçmiş yıllara ait yayın sayıları verilerini kullanarak **gelecekteki yayın sayılarını tahmin eden** bir analiz sistemidir. Proje, hem **Facebook Prophet** hem de **Linear Regression (numpy.polyfit kullanılarak uygulanmıştır)** modellerini kullanarak farklı tahmin stratejileri sunar.
+## Amaç
+Bu proje, Çukurova Üniversitesi akademik yayın verilerini analiz etmek ve görselleştirmek amacıyla geliştirilmiştir. Kullanıcıların verileri interaktif olarak inceleyebilmesi, yayın trendlerini takip edebilmesi ve alan/yazar bazında özet istatistikler çıkarabilmesi hedeflenmiştir.
 
----
+## 🚀 Kurulum
+1. Gerekli paketleri yükleyin:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Uygulamayı çalıştırın:
+   ```bash
+   streamlit run streamlitapp.py
+   ```
 
-## 📌 Özellikler
+## 🧭 Kullanım
+Açılan tarayıcı arayüzünde filtreleri kullanarak yıllara, alanlara veya yazarlara göre verileri süzebilir; farklı görünümler arasında geçiş yapabilirsiniz.
 
-- **SQL Server bağlantısı** ile doğrudan veritabanından veri çekme.
-- **Prophet** ve **Linear Regression (numpy.polyfit ile)** modelleri ile tahmin yapma.
-- **Yıllık yayın sayısı analizleri**.
-- **Alan bazlı filtreleme ve karşılaştırma**.
-- Kullanıcı dostu **etkileşimli terminal menüsü**.
-- **Grafiksel çıktı** üretimi (Matplotlib & Seaborn).
-- Esnek **tahmin yılı ve model seçimi**.
+## 📂 Dosya Yapısı
+- `streamlitapp.py` — Streamlit uygulama dosyası
+- `requirements.txt` — Gerekli kütüphaneler
+- `.gitignore` — Gereksiz/gizli dosyaların takibini engeller
 
----
+## 🎯 Özellikler
+- Yıllara göre toplam yayın sayısı
+- En çok yayın yapan yazarlar
+- En çok atıf alan yazarlar
+- En fazla yayın yapılan alanlar
 
-## 🛠 Kullanılan Teknolojiler
+## 🧰 Kullanılan Teknolojiler
+- Streamlit — İnteraktif web arayüzü
+- pandas — Veri işleme
+- matplotlib / plotly — Görselleştirme
+- SQL Server — Veri kaynağı
 
-- **Python** (3.8+)
-- **pandas** – Veri işleme
-- **numpy** – Matematiksel işlemler, Linear Regression numpy.polyfit ile
-- **matplotlib / seaborn** – Grafik ve görselleştirme
-- **prophet** – Zaman serisi tahmini
-- **SQLAlchemy** – Veritabanı bağlantısı
-- **python-dotenv** – Ortam değişkenleri yönetimi
-- **SQL Server** – Veri kaynağı
+## 📌 Notlar
+- Bu projede örnek veri seti bulunmamaktadır.
+- Tüm veriler SQL Server üzerinden alınmaktadır.
 
----
+## 🔧 Gelecek Geliştirmeler
+- Kullanıcı girişi ve yetkilendirme
+- Daha fazla görselleştirme seçeneği
+- Otomatik rapor oluşturma/indirme
 
-## 📂 Proje Yapısı
-
-```
-cu_veri_analizi/
-│
-├── analiz.py          # Ana Python kodu (veri çekme, analiz ve tahmin)
-├── .env               # Veritabanı bağlantı bilgileri (gizli)
-├── .gitignore         # Git izleme dışı dosyalar
-├── sorgu.sql          # SQL sorgu dosyası (isteğe bağlı, .gitignore altında)
-├── *.png              # Üretilen grafikler proje klasörüne kaydedilir
-└── README.md          # Proje dokümantasyonu
-```
-
----
-
-## ⚙️ Kurulum
-
-1. Depoyu klonlayın:
-```bash
-git clone https://github.com/<kullanici-adi>/cu-veri-analizi.git
-cd cu-veri-analizi
-```
-
-2. Gerekli Python paketlerini yükleyin (requirements.txt dosyası mevcutsa):
-```bash
-pip install -r requirements.txt
-```
-
-3. `.env` dosyasını oluşturun ve veritabanı bilgilerinizi girin:
-```
-DB_HOST=server_adresi
-DB_USER=kullanici_adi
-DB_PASSWORD=sifre
-DB_NAME=veritabani_adi
-DB_DRIVER=ODBC Driver 18 for SQL Server
-DB_ENCRYPT=Optional
-DB_TRUST_SERVER_CERT=true
-```
-> Not: Mac'te yüklü sürücü 17 ise `DB_DRIVER=ODBC Driver 17 for SQL Server` yazın.
+## 🤝 Katkı
+Katkıda bulunmak isterseniz bir **issue** açıp önerinizi yazabilir, ardından **fork → pull request** akışıyla değişiklik önerebilirsiniz.
 
 ---
 
-## ▶️ Kullanım
+# 📊 Cukurova University Publication Analysis — Streamlit
 
-Programı çalıştırmak için:
-```bash
-python analiz.py
-```
+## Purpose
+This project analyzes and visualizes Cukurova University’s academic publication data. It enables users to interactively explore trends and derive summary statistics by field/author.
 
-Çalıştırma sırasında kullanıcıdan:
-- **Model seçimi** (Prophet veya Linear Regression)
-- **Tahmin yılı** (varsayılan 2026)
-- **Alan filtreleri** (opsiyonel)
-gibi seçimler istenir.
+## 🚀 Installation
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Run the app:
+   ```bash
+   streamlit run streamlitapp.py
+   ```
 
-Yıl doğrulaması, mevcut verideki son yıldan sonra olacak şekilde anında yapılır ve hatalı girişlerde program kapanmadan tekrar sorulur.
+## 🧭 Usage
+Use the filters in the web UI to slice data by year, field, or author, and switch between different views.
 
----
+## 📂 File Structure
+- `streamlitapp.py` — Streamlit application
+- `requirements.txt` — Dependencies
+- `.gitignore` — Excludes unnecessary/secret files
 
-## 📊 Örnek Çıktı
+## 🎯 Features
+- Total publications by year
+- Top publishing authors
+- Most cited authors
+- Fields with the highest number of publications
 
-- **Terminal Çıktısı**
-```
-Seçilen Alan: Kimya
-Tahmin Yılı: 2026
-Tahmin Edilen Yayın Sayısı (Prophet): 125
-Tahmin Edilen Yayın Sayısı (Linear Regression): 119
-```
+## 🧰 Technologies
+- Streamlit — Interactive UI
+- pandas — Data wrangling
+- matplotlib / plotly — Visualization
+- SQL Server — Data source
 
-- **Grafiksel Çıktı**
-Görseller proje klasörüne `.png` dosyaları olarak kaydedilir (otomatik açma yok).  
-Dosya isimleri seçilen alan adına göre oluşturulur.
+## 📌 Notes
+- There is no sample dataset included in this repository.
+- All data is fetched directly from SQL Server.
 
----
+## 🔧 Future Improvements
+- Authentication & authorization
+- Additional visualization options
+- Automated report generation/download
 
-## ⚠️ Notlar
-
-- `.env` dosyası **kesinlikle** GitHub’a yüklenmemelidir.
-- SQL sorguları `sorgu.sql` dosyasında saklanabilir ancak gizlilik için `.gitignore` içine eklenmiştir.
-- Tahmin sonuçları kullanılan modele, verilerin güncelliğine ve parametrelere göre değişebilir.
-
----
-
-## 📬 İletişim
-
-Herhangi bir soru, öneri veya geri bildirim için bana şu e-posta adresinden ulaşabilirsiniz:  
-**omrumguler35@gmail.com**
-
----
-
-# Academic Publication Prediction and Analysis System
-
-This project is an analysis system that **predicts future publication counts** using historical publication data for specific academic fields. The project offers different forecasting strategies by utilizing both **Facebook Prophet** and **Linear Regression (implemented with numpy.polyfit)** models.
-
----
-
-## 📌 Features
-
-- **SQL Server connection** for direct data retrieval from the database.
-- Forecasting with **Prophet** and **Linear Regression (using numpy.polyfit)** models.
-- **Annual publication count analyses.**
-- **Field-based filtering and comparison.**
-- User-friendly **interactive terminal menu.**
-- **Graphical output** generation (Matplotlib & Seaborn).
-- Flexible **forecast year and model selection.**
-
----
-
-## 🛠 Technologies Used
-
-- **Python** (3.8+)
-- **pandas** – Data processing
-- **numpy** – Mathematical operations, Linear Regression implemented with numpy.polyfit
-- **matplotlib / seaborn** – Plotting and visualization
-- **prophet** – Time series forecasting
-- **SQLAlchemy** – Database connection
-- **python-dotenv** – Environment variable management
-- **SQL Server** – Data source
-
----
-
-## 📂 Project Structure
-
-```
-cu_veri_analizi/
-│
-├── analiz.py          # Main Python code (data retrieval, analysis, and prediction)
-├── .env               # Database connection info (hidden)
-├── .gitignore         # Files excluded from Git tracking
-├── sorgu.sql          # SQL query file (optional, ignored)
-├── *.png              # Generated figures saved in the project folder
-└── README.md          # Project documentation
-```
-
----
-
-## ⚙️ Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/<username>/cu-veri-analizi.git
-cd cu-veri-analizi
-```
-
-2. Install the required Python packages (if requirements.txt is present):
-```bash
-pip install -r requirements.txt
-```
-
-3. Create a `.env` file and enter your database information:
-```
-DB_HOST=server_address
-DB_USER=username
-DB_PASSWORD=password
-DB_NAME=database_name
-DB_DRIVER=ODBC Driver 18 for SQL Server
-DB_ENCRYPT=Optional
-DB_TRUST_SERVER_CERT=true
-```
-> Note: If your Mac has only driver 17 installed, set `DB_DRIVER=ODBC Driver 17 for SQL Server`.
-
----
-
-## ▶️ Usage
-
-To run the program:
-```bash
-python analiz.py
-```
-
-During execution, the user will be prompted for:
-- **Model selection** (Prophet or Linear Regression)
-- **Forecast year** (default 2026)
-- **Field filters** (optional)
-and similar options.
-
-Year validation happens immediately (must be after the last available data year); on invalid input the program re-prompts without exiting.
-
----
-
-## 📊 Example Output
-
-- **Terminal Output**
-```
-Selected Field: Chemistry
-Forecast Year: 2026
-Predicted Publication Count (Prophet): 125
-Predicted Publication Count (Linear Regression): 119
-```
-
-- **Graphical Output**
-Figures are saved as `.png` files in the project folder (no auto-open).  
-File names are generated based on the selected field name.
-
----
-
-## ⚠️ Notes
-
-- The `.env` file **must not** be uploaded to GitHub.
-- SQL queries can be stored in the `sorgu.sql` file but are included in `.gitignore` for privacy.
-- Prediction results may vary depending on the model used, data recency, and parameters.
-
----
-
-## 📬 Contact
-
-For any questions, suggestions, or feedback, feel free to contact me at:  
-**omrumguler35@gmail.com**
+## 🤝 Contributing
+Open an **issue** to discuss changes you’d like to make, then propose them via **fork → pull request**.
