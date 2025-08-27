@@ -1,0 +1,43 @@
+# --- Python cache/files ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+
+# --- Virtual env & local secrets ---
+.venv/
+venv/
+venv*/
+.venv*/
+.env
+*.env
+.env.*
+
+# --- OS/IDE/workspace ---
+.DS_Store
+.vscode/
+.idea/
+*.code-workspace
+
+# --- Data / artifacts ---
+*.csv
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.db
+*.sqlite
+
+# --- Framework specific ---
+.streamlit/
+
+# --- Ignore everything else by default ---
+# (Only keep the FastAPI app files below)
+*
+
+# --- Allowlist (repo'da kalacaklar) ---
+!.gitignore
+!requirements.txt
+!newfastapi.py
