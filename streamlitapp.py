@@ -480,6 +480,9 @@ with st.sidebar:
     st.session_state["use_prophet"] = bool(_use_prophet)
     if not _use_prophet:
         PROPHET_OK = False  # Prophet import edilmiş olsa bile hesaplamayı devre dışı bırak
+    # Eğer kullanıcı Prophet'i seçtiyse fakat paket yoksa kullanıcıyı bilgilendir
+    if _use_prophet and not PROPHET_OK:
+        st.warning("Prophet yüklü olmadığından tahmin sadece LM ile yapılacak. Terminalden `pip install prophet cmdstanpy` kurabilirsiniz.")
 
     # Mevcut veri aralığını otomatik keşfet (her zaman SQL Server)
     cur_year=datetime.date.today().year
@@ -2207,14 +2210,24 @@ if ran:
 
                             # LM / Prophet / Önerilen noktalarını ayrı işaretle
                             try:
+                                labels_added = set()
                                 if not pd.isna(y_lm):
-                                    ax.scatter([int(target_year)], [float(y_lm)], marker="s", s=45, label="LM", zorder=3)
+                                    ax.scatter([int(target_year)], [float(y_lm)], marker="s", s=45, label="LM", zorder=3, clip_on=False)
+                                    labels_added.add("LM")
                                 if (y_prop is not None) and (not pd.isna(y_prop)):
-                                    ax.scatter([int(target_year)], [float(y_prop)], marker="^", s=55, label="Prophet", zorder=3)
+                                    ax.scatter([int(target_year)], [float(y_prop)], marker="^", s=55, label="Prophet", zorder=3, clip_on=False)
+                                    labels_added.add("Prophet")
                                 if (y_suggested is not None) and (not pd.isna(y_suggested)):
-                                    ax.scatter([int(target_year)], [float(y_suggested)], s=65, label="Önerilen", zorder=4)
-                                if ax.get_legend_handles_labels()[0]:
-                                    ax.legend()
+                                    ax.scatter([int(target_year)], [float(y_suggested)], s=65, label="Önerilen", zorder=4, clip_on=False)
+                                    labels_added.add("Önerilen")
+                                # Yinelenen label'ları tekilleştir
+                                handles, labels = ax.get_legend_handles_labels()
+                                uniq = {}
+                                for h, l in zip(handles, labels):
+                                    if l not in uniq:
+                                        uniq[l] = h
+                                if uniq:
+                                    ax.legend(uniq.values(), uniq.keys())
                             except Exception:
                                 pass
 
@@ -2222,7 +2235,11 @@ if ran:
                             try:
                                 xmin = int(min(min_year, int(target_year)))
                                 xmax = int(max(max_year, int(target_year)))
-                                ax.set_xlim(xmin, xmax)
+                                pad = 1  # hedef yıl kenarda kaybolmasın diye +1 yıl pad
+                                ax.set_xlim(xmin, xmax + pad)
+                                ax.margins(x=0.02)
+                                # hedef yılı görsel olarak da işaretle
+                                ax.axvline(int(target_year), linestyle=":", linewidth=1)
                             except Exception:
                                 pass
 
