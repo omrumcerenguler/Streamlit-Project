@@ -22,7 +22,6 @@ venv*/
 
 # --- Data / artifacts ---
 *.csv
-*.png
 *.jpg
 *.jpeg
 *.gif
@@ -42,3 +41,5 @@ venv*/
 !requirements.txt
 !newfastapi.py
 !README.md
+!images/
+!images/*.png
