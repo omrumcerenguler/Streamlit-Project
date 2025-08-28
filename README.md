@@ -27,6 +27,19 @@ Açılan tarayıcı arayüzünde filtreleri kullanarak yıllara, alanlara veya y
 - En çok atıf alan yazarlar
 - En fazla yayın yapılan alanlar
 
+-## 📸 Ekran Görüntüleri
+
+![Parametre Paneli — 1](images/Ekran%20Resmi%202025-08-27%2014.17.05.png)
+![Parametre Paneli — 2](images/Ekran%20Resmi%202025-08-27%2014.17.15.png)
+![Alanlara Göre Yayın Sayısı — Tablo](images/Ekran%20Resmi%202025-08-27%2014.17.27.png)
+![En Fazla Yayın Yapılan Alanlar — Grafik](images/Ekran%20Resmi%202025-08-27%2014.17.35.png)
+![En Fazla Yayın Yapılan Alanlar — Grafik 2](images/Ekran%20Resmi%202025-08-27%2014.18.05.png)
+![En Çok Yayın Yapan Yazarlar — Tablo](images/Ekran%20Resmi%202025-08-27%2014.17.42.png)
+![En Çok Yayın Yapan Yazarlar — Grafik](images/Ekran%20Resmi%202025-08-27%2014.17.48.png)
+![En Çok Atıf Alan Yazarlar — Tablo](images/Ekran%20Resmi%202025-08-27%2014.17.58.png)
+![En Çok Atıf Alan Yazarlar — Grafik](images/Ekran%20Resmi%202025-08-27%2014.18.11.png)
+![Alan Bazlı Yıllık Seri — Çizgi](images/Ekran%20Resmi%202025-08-27%2014.17.54.png)
+
 ## 🧰 Kullanılan Teknolojiler
 - Streamlit — İnteraktif web arayüzü
 - pandas — Veri işleme
